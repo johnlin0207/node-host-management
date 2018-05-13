@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:600);
+body {
+    margin: 0;
+}
+#container {
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto auto;
+    transform: rotate(-90deg);
+    animation: container 6.5s infinite;
+    /*box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);*/
+    border-radius: 100%;
+   /* background: #F4F4F4;*/
+    animation-timing-function: ease-in-out;
+}
+.preLoader {
+    fill: none;
+    stroke: #EA4335;
+    stroke-width: 5;
+    stroke-dasharray: 251.327412287;
+    stroke-dashoffset: 251.327412287;
+    animation: ofset 6.5s infinite;
+    stroke-linecap: round;
+    animation-fill-mode: forwards;
+    box-shadow: 2px 2px 3px black;
+    animation-timing-function: ease-in-out;
+}
+@keyframes ofset {
+    0% {
+        stroke-dashoffset: 251.32741;
+        stroke: #EA4335;
+    }
+    12% {
+        stroke-dashoffset: 15;
+    }
+    24% {
+        stroke: #ea4335;
+    }
+    25% {
+        stroke-dashoffset: -251.32741;
+        stroke: transparent;
+    }
+    26% {
+        stroke-dashoffset: 251.32741;
+        stroke: transparent;
+    }
+    27% {
+        stroke: #4285f4;
+    }
+    37% {
+        stroke-dashoffset: 15;
+    }
+    49% {
+        stroke: #4285f4;
+    }
+    50% {
+        stroke-dashoffset: -251.32741;
+        stroke: transparent;
+    }
+    51% {
+        stroke-dashoffset: 251.32741;
+        stroke: transparent;
+    }
+    52% {
+        stroke: #fba805;
+    }
+    62% {
+        stroke-dashoffset: 15;
+    }
+    74% {
+        stroke: #fba805;
+    }
+    75% {
+        stroke-dashoffset: -251.32741;
+        stroke: transparent;
+    }
+    76% {
+        stroke-dashoffset: 251.32741;
+        stroke: transparent;
+    }
+    77% {
+        stroke: #34a853;
+    }
+    87% {
+        stroke-dashoffset: 15;
+    }
+    100% {
+        stroke-dashoffset: -251.32741;
+        stroke: #34a853;
+    }
+}
+@keyframes container {
+    25% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(100deg);
+    }
+    75% {
+        transform: rotate(190deg);
+    }
+    100% {
+        transform: rotate(270deg);
+    }
+}
+#textWrap {
+    height: 150px;
+    width: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto auto;
+    overflow: visible;
+}
+#textWrap #textPath {
+    fill: none;
+}
+.text {
+    font-size: 13px;
+    font-family: 'Raleway', sans-serif;
+}
+#body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    /* fallback for old browsers */
+
+   /* background: -webkit-linear-gradient(to left, #1e3c72, #2a5298);*/
+    /* Chrome 10-25, Safari 5.1-6 */
+
+   /* background: linear-gradient(to left, #1e3c72, #2a5298);*/
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

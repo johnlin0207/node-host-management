@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cmd.css">
+    <link rel="stylesheet" href="lib/bootstrap-multiselect.css" type="text/css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <ul class="menu-bar col-md-2 col-sm-2 col-xs-2">
+            <li class="active" data-cmd="option0"><a href="#1">直接输命令</a></li>
+            <li class="listFile" data-cmd="option1"><a href="#2">查看文件与下载</a></li>
+            <li class="listFile-check" data-cmd="option2"><a href="#3">上传文件</a></li>
+            <li class="spark-submit" data-cmd="option3"><a href="#4">Spark-submit</a></li>
+        </ul>
+        <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+            <nav class="navbar navbar-default m-15">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse">
+                        <div class="navbar-left">
+                            <!-- <label for="upload" class="uploadIcon ">选择本地包</label>-->
+                            <input type="file" class="uploadIcon" style="display: none" id="upload">
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- <li><a href="#">Manager</a></li>
+                             <li><a href="#">History</a></li>-->
+                            <li><a href="#" id="loginName"></a></li>
+                            <li><a href="#" id="userName"></a></li>
+                            <li><a href="/login">退出</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="form-group normal-panel">
+                        <label for="params">参数：</label>
+                        <input name="params" type="text" class="form-control" id="params" placeholder="请输入参数">
+                    </div>
+                    <div class="form-group upload-panel f-dpnone">
+                        <span>选择你要上传包类型</span>&nbsp;&nbsp;
+                        <label>
+                            <input type="radio" value="true" name="thirdPart" id="radio1" class="thirdPart"
+                                   checked="checked">第三方jar包
+                        </label>&nbsp;
+                        <label>
+                            <input type="radio" value="true" name="thirdPart" id="radio2" class="programJar"
+                                  >程序jar包
+                        </label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group spark-submit-panel f-dpnone">
+                        <div class="row" id="area">
+                            <div class="form-group col-md-2">
+                                <label>
+                                    <input type="checkbox" id="nohup" name="nohup" checked value="true">后台运行
+                                </label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="driver-memory">
+                                    <input type="checkbox" checked>driver-memory：
+                                </label>
+                                <select name="driverMemory" id="driver-memory">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="form-group  col-md-3">
+                                <label for="executor-cores">
+                                    <input type="checkbox" checked="checked">executor-cores：
+                                </label>
+                                <select name="cores" id="executor-cores">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="executor-memory">
+                                    <input type="checkbox" checked>executor-memory：
+                                </label>
+                                <select name="executorMemory" id="executor-memory">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="exeClass">执行class：</label>
+                                <input type="text" class="form-control" id="exeClass" placeholder="必填" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="master">Master：</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="master" placeholder="" required>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" id="autoIn" value="">自动</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="master">jar包：</label>
+                                <input type="text" class="form-control" id="jar" placeholder="必填" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="thirdPart">第三方jar包：</label>
+                                <input type="text" class="form-control" id="thirdPart" placeholder="选填，多个请用英文“ , ”隔开" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputParam">inputParam</label>
+                                <input type="text" class="form-control" id="inputParam" placeholder="选填，多个请用 空格 隔开">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="logName">日志名：</label>
+                                <input type="text" class="form-control" id="logName" placeholder="选填">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="other">其他配置：</label>
+                                <textarea class="form-control" name="other" id="other"
+                                          placeholder="选填，若配置多条信息请用英文“ ; ”隔开，填写方式例如spark.driver.maxResultSize=‘20g’"
+                                          rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input id="btn-submit" class="btn btn-primary btn-submit" type="button" value="提交">
+                        <input id="btn-download" style="display: none" class="btn btn-success btn-submit" type="button" value="下载">
+                    </div>
+                </div>
+            </div>
+            <div class="login-wrapper col-md-12">
+                <div class="result-wrapper">
+                    <div class="result-title">输出窗口：</div>
+                    <div id="result-delete">清空</div>
+                    <div id="result-content">
+                        <!--<textarea name="result" id="result"></textarea>-->
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="modal fade" id="dm_Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                &lt;!&ndash;<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>&ndash;&gt;
+                <h4 class="modal-title" id="myModalLabel">编辑（当前编辑只针对当前主机生效）</h4>
+            </div>
+            <div class="modal-body">
+                <form class="bs-example bs-example-form" role="form">
+                    <div class="row">
+                        <form role="form">
+                            <div class="form-group col-sm-12">
+                                <label for="addTypes" class="col-sm-2" style="padding-right: 0">选择添加类型</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="addTypes" style="padding-left:0">
+                                        <option value="dm" id="dm_add" selected="selected">driver-memory</option>
+                                        <option value="ec" id="ec_add">executor-cores</option>
+                                        <option value="em" id="em_add">executor-memory</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4" style="padding-right: 0">
+                                    <input type="text" class="form-control" id="num_add" name="name"
+                                           placeholder="输入整数，多个用空格隔开"/>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button id="addButton">添加</button>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label for="addTypes" class="col-sm-2" style="padding-right: 0">选择删除类型</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="delTypes" style="padding-left:0">
+                                        <option value="dm" id="dm_del" selected="selected">driver-memory</option>
+                                        <option value="ec" id="ec_del">executor-cores</option>
+                                        <option value="em" id="em_del">executor-memory</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select id="del_select" class="form-control" >&lt;!&ndash;multiple="multiple"&ndash;&gt;
+                                       &lt;!&ndash; <option value="" selected="selected">请选择</option>&ndash;&gt;
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button id="delButton">删除</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>&lt;!&ndash; /.row &ndash;&gt;
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="close" data-dismiss="modal">关闭</button>
+               &lt;!&ndash; <button type="button" class="btn btn-primary">提交更改</button>&ndash;&gt;
+            </div>
+        </div>&lt;!&ndash; /.modal-content &ndash;&gt;
+    </div>&lt;!&ndash; /.modal &ndash;&gt;
+</div>-->
+<!--<div class="bg"></div>-->
+<script src="lib/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script src="lib/bootstrap.min.js" type="text/javascript"></script>
+<script src="lib/bootstrap-multiselect.js" type="text/javascript"></script>
+<script src="lib/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="js/cmd.js" type="text/javascript"></script>
+</body>
+</html>
